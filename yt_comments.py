@@ -5,6 +5,7 @@ import emoji
 from dotenv import load_dotenv
 import os
 
+# Environment variables
 load_dotenv()
 video_id = os.getenv("video_id")
 api_key = os.getenv("api_key")
@@ -77,7 +78,7 @@ all_comments = []
 # build a youtube object using our api key
 yt_object = build('youtube', 'v3', developerKey=api_key)
 
-print("Clear 1")
+#print("Clear 1")
 
 # HTML tag remove function
 
@@ -102,11 +103,11 @@ for comment, replies in all_comments:
                 comments_list.append(reply.replace(emoji.emoji_list(reply)[0]['emoji'], "")),
             else: comments_list.append(remove_html_tags(reply))
 
-print("Clear 2")
+#print("Clear 2")
 
 df = pd.Series (comments_list)
 
-print("Clear 3")
+#print("Clear 3")
 
 # Translate and emoji cleaner
 
@@ -116,12 +117,12 @@ df = df.apply(lambda x: translator.translate(x,  dest='en').text)
 
 # df = df.apply(lambda x: x.replace(emoji.emoji_list(x)[0]['emoji'], ""))
 
-print("Clear 4")
+#print("Clear 4")
 
 # List to CSV in folder
 
 df.to_csv('C:/Users/Windows 10/Desktop/PEDRO/CODE/YTcomments2.csv', sep=';', encoding='utf-8', index=False)
 
-print("Clear 5")
+#print("Clear 5")
 
 
